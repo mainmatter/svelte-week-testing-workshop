@@ -1,0 +1,12 @@
+diff --git a/./src/lib/bugs/1.svelte b/./src/lib/bugs/1.bug.svelte
+index 79d5229..cdeb5e9 100644
+--- a/./src/lib/bugs/1.svelte
++++ b/./src/lib/bugs/1.bug.svelte
+@@ -1,6 +1,6 @@
+ <script>
+ 	const { name } = $props();
+-	const trimmed = $derived(name.trim());
++	const trimmed = name.trim();
+ </script>
+ 
+ {#if trimmed}

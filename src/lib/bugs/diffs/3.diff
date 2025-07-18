@@ -1,0 +1,22 @@
+diff --git a/./src/lib/bugs/3.svelte b/./src/lib/bugs/3.bug.svelte
+index 03b5e0a..9151266 100644
+--- a/./src/lib/bugs/3.svelte
++++ b/./src/lib/bugs/3.bug.svelte
+@@ -1,5 +1,4 @@
+ <script>
+-	import { flushSync } from 'svelte';
+ 	let value = $state(10);
+ </script>
+ 
+@@ -10,11 +9,6 @@
+ 		{value}
+ 		oninput={(e) => {
+ 			const new_value = e.currentTarget.valueAsNumber;
+-			flushSync(() => {
+-				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+-				// @ts-ignore
+-				value = 'pls work! 😭';
+-			});
+ 			value = Math.max(new_value, 10);
+ 		}}
+ 	/>

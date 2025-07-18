@@ -1,0 +1,23 @@
+diff --git a/./src/lib/bugs/4.svelte b/./src/lib/bugs/4.bug.svelte
+index a8fdf3e..1a7a59c 100644
+--- a/./src/lib/bugs/4.svelte
++++ b/./src/lib/bugs/4.bug.svelte
+@@ -1,13 +1,16 @@
+ <script>
+-	import { locale, locales } from '$lib/locale.svelte.js';
++	import { locale, locales, getSystemLocale } from '$lib/locale.svelte.js';
+ 	let open = $state(false);
+ </script>
+ 
+ <button>
+-	Current locale: {locale.current}
++	Current locale: {locale.current ?? getSystemLocale()}
+ </button>
+ {#if open}
+ 	<ul>
++		<li>
++			<button onclick={() => (locale.current = undefined)}>System locale</button>
++		</li>
+ 		{#each locales as locale_option (locale_option)}
+ 			<li>
+ 				<button onclick={() => (locale.current = locale_option)}>

@@ -1,0 +1,24 @@
+diff --git a/./src/lib/bugs/2.svelte b/./src/lib/bugs/2.bug.svelte
+index 14ca6d9..48b5c52 100644
+--- a/./src/lib/bugs/2.svelte
++++ b/./src/lib/bugs/2.bug.svelte
+@@ -1,7 +1,17 @@
+ <script>
+-	const { page } = $props();
++	const { user_id, page } = $props();
+ 
+ 	$effect(() => {
+-		navigator.sendBeacon('/analytics', JSON.stringify({ page }));
++		const controller = new AbortController();
++		(async () => {
++			const res = await fetch(`/profile/${user_id}`, {
++				signal: controller.signal
++			});
++			const profile = await res.json();
++			navigator.sendBeacon('/analytics', JSON.stringify({ page, profile }));
++		})();
++		return () => {
++			controller.abort();
++		};
+ 	});
+ </script>
