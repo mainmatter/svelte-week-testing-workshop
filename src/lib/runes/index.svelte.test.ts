@@ -41,7 +41,7 @@ describe('scrollY class', () => {
 	});
 
 	afterEach(() => {
-		//window.scrollTo(0, 0);
+		window.scrollTo(0, 0);
 	});
 	it('should return current scrollY position', () => {
 		const scrollY = new ScrollY();
@@ -70,11 +70,11 @@ describe('scrollY class', () => {
 		});
 		expect(logs).toStrictEqual([0]);
 		window.scrollTo(0, 200);
-		vi.waitFor(() => {
+		await vi.waitFor(() => {
 			expect(logs).toStrictEqual([0, 200]);
 		});
 		window.scrollTo(0, 400);
-		vi.waitFor(() => {
+		await vi.waitFor(() => {
 			expect(logs).toStrictEqual([0, 200, 400]);
 		});
 		cleanup();
