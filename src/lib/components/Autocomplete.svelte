@@ -69,7 +69,8 @@
 	}
 </script>
 
-<div class="autocomplete">
+<label class="autocomplete">
+	Search
 	<input
 		type="text"
 		{placeholder}
@@ -93,7 +94,7 @@
 			{/each}
 		</ul>
 	{/if}
-</div>
+</label>
 
 <style>
 	.autocomplete {
