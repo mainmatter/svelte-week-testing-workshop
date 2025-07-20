@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 
 export default defineConfig({
 	plugins: [sveltekit(), devtoolsJson()],
@@ -23,6 +24,11 @@ export default defineConfig({
 			},
 			{
 				extends: './vite.config.ts',
+				plugins: [
+					storybookTest({
+						storybookScript: 'pnpm storybook'
+					})
+				],
 				test: {
 					name: 'storybook',
 					environment: 'browser',
@@ -31,9 +37,9 @@ export default defineConfig({
 						provider: 'playwright',
 						instances: [{ browser: 'chromium' }]
 					},
-					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
-					exclude: ['src/lib/server/**'],
-					setupFiles: ['./vitest-setup-client.ts']
+					setupFiles: ['./.storybook/vitest.setup.ts'],
+					include: ['src/**/*.stories.svelte'],
+					exclude: ['src/lib/server/**']
 				}
 			},
 			{
