@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	let { data } = $props();
+
+	$effect(() => {
+		fetch('https://api.example.com/user')
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('User data:', data);
+			});
+	});
+</script>
+
+<pre>{JSON.stringify(data, null, '\t')}</pre>
